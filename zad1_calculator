@@ -1,0 +1,52 @@
+.data
+
+	prompt: .asciiz "Wprowadz pierwsza liczbe: "
+	operations: .asciiz "Wybierz dzialanie: \n\n Dodawanie: 0  Odejmowanie: 1  Mnozenie: 2  Dzielenie: 3 "
+	prompt2: .asciiz "\nWprowadz druga liczbe: "
+	result: .asciiz "Wynik: "
+	
+.text
+	#prosi o pierwszą liczbę
+	li $v0, 4
+	la $a0, prompt
+	syscall
+	
+	#pobiera liczbę
+	li $v0, 5
+	syscall
+	
+	#zapisuje pierwszą ilczbę w rejestrze $t0
+	move $t0, $v0
+	
+	#prosi o działanie
+	li $v0, 4
+	la $a0, operations
+	syscall
+	
+	#pobiera działanie
+	li $v0, 5
+	syscall
+	
+	#zapisuje działanie w rejestrze $t1
+	move $t1, $v0
+	
+	
+	#prosi o drugą liczbę
+	li $v0, 4
+	la $a0, prompt2
+	syscall
+	
+	#pobiera drugą liczbę
+	li $v0, 5
+	syscall
+	
+	#zapisuje drugą liczbę w rejestrze $t2
+	move $t2, $v0
+	
+	
+	
+	
+	
+	
+	
+	

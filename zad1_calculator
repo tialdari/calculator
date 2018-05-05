@@ -6,6 +6,8 @@
 	result: .asciiz "Wynik: "
 	
 .text
+
+	main:
 	#prosi o pierwszą liczbę
 	li $v0, 4
 	la $a0, prompt
@@ -45,7 +47,9 @@
 	
 	
 	
-	
+	#koniec programu
+	li $v0, 10
+	syscall
 	
 	
 	

@@ -7,10 +7,14 @@
 	number1: .asciiz "\nPierwsza liczba: "
 	operation: .asciiz "\nDzialanie: "
 	number2: .asciiz "\nDruga liczba: "
+	ifContinue: .asciiz "\nCzy chcesz kontynuowac? 0/1"
 	
 .text
 
 	main:
+	
+	while:
+	
 		#prosi o pierwszą liczbę
 		li $v0, 4
 		la $a0, prompt
@@ -79,6 +83,25 @@
 		beq $t1, 1, substract
 		beq $t1, 2, multiply
 		beq $t1, 3, divide
+		
+	continue:
+		
+		#pyta, czy kontynuować
+		li $v0, 4
+		la $a0, ifContinue
+		syscall
+		
+		#pobiera odpowiedź
+		li $v0, 5
+		syscall
+		
+		#zapisuje odpowiedź w rejestrze $t0
+		move $t0, $v0
+		
+		#zakańcza lub kontynuuje program
+		beq $t0, 0, exit
+		beq $t0, 1, while
+		
 
 	exit:
 		#koniec programu
@@ -100,7 +123,7 @@
 		move $a0, $t3
 		syscall
 		
-		j exit
+		j continue
 	
 	substract:
 	
@@ -116,7 +139,7 @@
  		move $a0, $t3
  		syscall
  		
- 		j exit
+ 		j continue
 
 	multiply:
 	
@@ -133,7 +156,7 @@
 		add $a0, $zero, $t3
 		syscall
 		
-		j exit
+		j continue
 		
 	divide:
 	
@@ -148,5 +171,5 @@
 		add $a0, $zero, $t3
 		syscall
 
-		j exit
+		j continue
 	

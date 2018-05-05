@@ -7,7 +7,7 @@
 	number1: .asciiz "\nPierwsza liczba: "
 	operation: .asciiz "\nDzialanie: "
 	number2: .asciiz "\nDruga liczba: "
-	ifContinue: .asciiz "\nCzy chcesz kontynuowac? Nie: 0  Tak: 1\n”
+	ifContinue: .asciiz "\n\nCzy chcesz kontynuowac? Nie: 0  Tak: 1\n”
 	
 .text
 

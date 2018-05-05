@@ -78,6 +78,7 @@
 		beq $t1, 0, sum
 		beq $t1, 1, substract
 		beq $t1, 2, multiply
+		beq $t1, 3, divide
 
 		
 		#koniec programu
@@ -124,4 +125,18 @@
 		li $v0, 1
 		add $a0, $zero, $t3
 		syscall
+		
+	divide:
+	
+		div $t3, $t0, $t2	
+		
+		#drukuje wynik
+		li $v0, 4
+		la $a0, result
+		syscall
+
+		li $v0, 1
+		add $a0, $zero, $t3
+		syscall
+
 		

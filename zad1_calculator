@@ -3,7 +3,7 @@
 	prompt: .asciiz "Wprowadz pierwsza liczbe: "
 	operations: .asciiz "Wybierz dzialanie: \n\n Dodawanie: 0  Odejmowanie: 1  Mnozenie: 2  Dzielenie: 3 "
 	prompt2: .asciiz "\nWprowadz druga liczbe: "
-	result: .asciiz "Wynik: "
+	result: .asciiz "\nWynik: "
 	number1: .asciiz "\nPierwsza liczba: "
 	operation: .asciiz "\nDzialanie: "
 	number2: .asciiz "\nDruga liczba: "
@@ -74,5 +74,27 @@
 		move $a0, $t2
 		syscall
 		
+		#sprawdza, które działanie wybrał użytkownik
+		beq $t1, 0, sum
+
+		
+		#drukuje wynik
+		li $v0, 4
+		la $a0, result
+		syscall
+
+		
+	sum:
+		add $t3, $t0, $t2
+		
+		
+		#drukuje wynik
+		li $v0, 4
+		la $a0, result
+		syscall
+		
+		li $v0, 1
+		move $a0, $t3
+		syscall
 		
 		

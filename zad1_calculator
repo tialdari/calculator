@@ -4,53 +4,75 @@
 	operations: .asciiz "Wybierz dzialanie: \n\n Dodawanie: 0  Odejmowanie: 1  Mnozenie: 2  Dzielenie: 3 "
 	prompt2: .asciiz "\nWprowadz druga liczbe: "
 	result: .asciiz "Wynik: "
+	number1: .asciiz "\nPierwsza liczba: "
+	operation: .asciiz "\nDzialanie: "
+	number2: .asciiz "\nDruga liczba: "
 	
 .text
 
 	main:
-	#prosi o pierwszą liczbę
-	li $v0, 4
-	la $a0, prompt
-	syscall
+		#prosi o pierwszą liczbę
+		li $v0, 4
+		la $a0, prompt
+		syscall
 	
-	#pobiera liczbę
-	li $v0, 5
-	syscall
+		#pobiera liczbę
+		li $v0, 5
+		syscall
 	
-	#zapisuje pierwszą ilczbę w rejestrze $t0
-	move $t0, $v0
+		#zapisuje pierwszą ilczbę w rejestrze $t0
+		move $t0, $v0
 	
-	#prosi o działanie
-	li $v0, 4
-	la $a0, operations
-	syscall
+		#prosi o działanie
+		li $v0, 4
+		la $a0, operations
+		syscall
 	
-	#pobiera działanie
-	li $v0, 5
-	syscall
+		#pobiera działanie
+		li $v0, 5
+		syscall
 	
-	#zapisuje działanie w rejestrze $t1
-	move $t1, $v0
+		#zapisuje działanie w rejestrze $t1
+		move $t1, $v0
 	
+		#prosi o drugą liczbę
+		li $v0, 4
+		la $a0, prompt2
+		syscall
 	
-	#prosi o drugą liczbę
-	li $v0, 4
-	la $a0, prompt2
-	syscall
+		#pobiera drugą liczbę
+		li $v0, 5
+		syscall
 	
-	#pobiera drugą liczbę
-	li $v0, 5
-	syscall
-	
-	#zapisuje drugą liczbę w rejestrze $t2
-	move $t2, $v0
-	
-	
-	
-	#koniec programu
-	li $v0, 10
-	syscall
-	
-	
-	
-	
+		#zapisuje drugą liczbę w rejestrze $t2
+		move $t2, $v0
+		
+		#drukuje pierwszą liczbę
+		li $v0, 4
+		la $a0, number1
+		syscall
+		
+		li $v0, 1
+		move $a0, $t0
+		syscall
+		
+		#drukuje działanie
+		li $v0, 4
+		la $a0, operation
+		syscall
+		
+		li $v0, 1
+		move $a0, $t1
+		syscall
+		
+		#drukuje drugą liczbę
+		li $v0, 4
+		la $a0, number2
+		syscall
+		
+		li $v0, 1
+		move $a0, $t2
+		syscall
+		
+		
+		

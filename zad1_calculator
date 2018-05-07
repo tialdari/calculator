@@ -8,6 +8,7 @@
 	operation: .asciiz "\nDzialanie: "
 	number2: .asciiz "\nDruga liczba: "
 	ifContinue: .asciiz "\n\nCzy chcesz kontynuowac? Nie: 0  Tak: 1\n”
+	error: "\nDzielenie przez zero!!!"
 	
 .text
 
@@ -159,7 +160,17 @@
 		j continue
 		
 	divide:
-	
+		
+		beq $t2, 0, myError
+		
+		myError:
+			#drukuje wynik
+			li $v0, 4
+			la $a0, error
+			syscall
+			
+			j  exit
+		
 		div $t3, $t0, $t2	
 		
 		#drukuje wynik

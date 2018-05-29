@@ -41,6 +41,12 @@
 		#zapisuje działanie w rejestrze $t1
 		move $t1, $v0
 	
+	
+		#prosi o drugą liczbę
+		li $v0, 4
+		la $a0, prompt2
+		syscall
+	
 		li $v0, 7
 		syscall
 	
@@ -124,48 +130,49 @@
 	
 	substract:
 	
-		sub $t3, $t0, $t2
 		
 		#drukuje wynik
 		li $v0, 4
 		la $a0, result
 		syscall
 		
+		
+		li $v0, 3
+		sub.d $f12, $f2, $f4
+		syscall
+		
  
- 		li $v0, 1
- 		move $a0, $t3
- 		syscall
+ 		
  		
  		j continue
 
 	multiply:
 	
-		mult $t0, $t2
-		mflo $t3
-
+		
+		
 		#drukuje wynik
 		li $v0, 4
 		la $a0, result
 		syscall
 		
 
-		li $v0, 1
-		add $a0, $zero, $t3
+		li $v0, 3
+		mul.d $f12, $f4, $f2
 		syscall
 		
 		j continue
 		
 	divide:
 	
-		div $t3, $t0, $t2	
+
 		
 		#drukuje wynik
 		li $v0, 4
 		la $a0, result
 		syscall
 		
-		li $v0, 1
-		add $a0, $zero, $t3
+		li $v0, 3
+		div.d $f12, $f2, $f4
 		syscall
 
 		j continue
